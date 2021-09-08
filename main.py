@@ -1,3 +1,4 @@
+from typing import Collection
 import pygame
 import sys
 import time
@@ -17,9 +18,10 @@ run = False
 it = 0
 ft = 0
 t = 0
-g = 0.5
+g = 0.25
 scorenumber = 0
 gameover = False
+collisions = 0
 
 pygame.mixer.init(48000, -16, 1, 1024)
 pygame.init()
@@ -64,14 +66,16 @@ def remove_straws(straws):
 def collision(): 
     global run
     global gameover
+    global collisions
+    #using 10 collisions cause with only 1 its hypersensitive
     for straw in straw_list:
         if magikarp_rect.colliderect(straw):
-            run = None
-            gameover = True
+            collisions += 1
     if magikarp_rect.bottom >= 700:
-        run = None
-        gameover = True
+        collisions += 1
     if magikarp_rect.top <= -200:
+        collisions += 1
+    if collisions == 10:
         run = None
         gameover = True
 
@@ -185,6 +189,7 @@ while True:
                     scorenumber = 0
                     run = True
                     gameover = False
+                    collisions = 0
 
         screen.blit(bg, (0,0))
         move_floor(floor_rect)
