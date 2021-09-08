@@ -1,4 +1,3 @@
-from typing import Collection
 import pygame
 import sys
 import time
