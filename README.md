@@ -1,4 +1,4 @@
-#Magikarp Jump
+# Magikarp Jump
 
 A game where you play as a Magikarp swimming in the ocean, avoiding plastic straws. 
 
